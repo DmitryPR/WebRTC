@@ -68,3 +68,5 @@
 /xcodebuild
 /.vscode
 !webrtc/*
+
+out_ios_libs/

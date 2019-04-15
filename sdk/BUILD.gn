@@ -651,7 +651,8 @@ if (is_ios || is_mac) {
     # these objects are just thin wrappers of native C++ interfaces required
     # when implementing webrtc::PeerConnectionFactoryInterface and
     # webrtc::PeerConnectionInterface.
-    # The applications which only use WebRTC DataChannel can depend on this.
+    # The applications which only use WebRTC DataChannel can depend on this
+    # target instead of rtc_sdk_objc.
     rtc_static_library("peerconnectionfactory_no_media_objc") {
       visibility = [ "*" ]
       allow_poison = [ "audio_codecs" ]  # TODO(bugs.webrtc.org/8396): Remove.
@@ -1595,6 +1596,14 @@ if (is_ios || is_mac) {
         "../rtc_base",
         "../rtc_base:checks",
         "//third_party/abseil-cpp/absl/memory",
+      ]
+    }
+
+    rtc_static_library("rtc_sdk_objc") {
+      complete_static_lib = true
+      deps = [
+        ":ui_objc",
+        ":videocapture_objc"
       ]
     }
 
